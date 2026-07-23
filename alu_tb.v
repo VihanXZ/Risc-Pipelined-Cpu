@@ -9,9 +9,9 @@
 
 module alu_tb;
 
-    reg  [31:0] a, b;
+    reg  [31:0] a, b;   // "reg"  these are the values that the testbench will control
     reg  [3:0]  alu_op;
-    wire [31:0] result;
+    wire [31:0] result;// while these are the values that the alu file will give us
     wire        zero;
 
     // Same operation codes as in alu.v - kept in sync manually
@@ -38,7 +38,7 @@ module alu_tb;
     end
 
     // Helper task: runs one test case and prints PASS/FAIL.
-    // Using a task avoids repeating the same check logic 6 times.
+    // Using a task avoids repeating the same check logic 6 times. it is basically like a function in other programming languages
     task run_test;
         input [31:0] in_a, in_b;
         input [3:0]  op;
