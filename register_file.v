@@ -23,7 +23,7 @@ module register_file (
 
     // The actual storage: 32 registers, each 32 bits.
     // Think of this as an array reg[0] ... reg[31]
-    reg [31:0] registers [0:31];
+    reg [31:0] registers [0:31]; // 32 registers each of 32 bits
 
     integer i;
 
