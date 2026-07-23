@@ -42,7 +42,7 @@ module register_file_tb;
     always #5 clk = ~clk;
 
     // ------------------------------------------------------
-    // Waveform dump - this is what lets GTKWave show you
+    // Waveform dump - this is what lets GTKWave show us
     // the signals. Without these two lines, no .vcd file
     // is produced and there's nothing to view.
     // ------------------------------------------------------
@@ -63,7 +63,7 @@ module register_file_tb;
         #12;              // hold reset for a bit more than one clock period
         rst = 0;
 
-        // 2) Write the value 100 into register x5
+        // 2) Write the value 100 into register x5 (here we are checking the write function in the register file)
         @(negedge clk);   // change inputs safely away from the clock edge
         rd_addr = 5'd5;
         rd_data = 32'd100;
@@ -75,7 +75,7 @@ module register_file_tb;
         rd_data = 32'd250;
         rd_wen  = 1;
 
-        // 4) Stop writing, now try to read both back
+        // 4) Stop writing, now here are trying to read back the written values
         @(negedge clk);
         rd_wen   = 0;
         rs1_addr = 5'd5;   // should read 100
@@ -92,7 +92,7 @@ module register_file_tb;
         else
             $display("FAIL: x10 expected 250, got %0d", rs2_data);
 
-        // 5) Try to write to x0 - this MUST be ignored (RISC-V rule)
+        // 5) Try to write to x0 - this MUST be ignored (RISC-V rule)(This is just to prove that X0 always stays 0)
         @(negedge clk);
         rd_addr = 5'd0;
         rd_data = 32'd999;
