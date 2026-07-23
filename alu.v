@@ -11,14 +11,14 @@ module alu (
     input  wire [31:0] b,          // second operand
     input  wire [3:0]  alu_op,     // operation select code
     output reg  [31:0] result,     // the answer
-    output wire         zero        // 1 if result == 0 (used for beq/bne later)
+    output wire   zero        // 1 if result == 0 (used for beq/bne later)
 );
 
     // Operation codes - just labels we're choosing ourselves.
-    // The control unit (built later) will set alu_op to one of
+    // The control unit  will set alu_op to one of
     // these based on the instruction it decodes.
-    localparam ALU_ADD  = 4'b0000;
-    localparam ALU_SUB  = 4'b0001;
+    localparam ALU_ADD  = 4'b0000; // here localparam is basically used to give a easy to remeber or meaningful name to a specific value(such as 4'b0000 in this case)
+    localparam ALU_SUB  = 4'b0001;// also this name is valid only within this file
     localparam ALU_AND  = 4'b0010;
     localparam ALU_OR   = 4'b0011;
     localparam ALU_SLT  = 4'b0100;  // set-less-than: result = 1 if a < b, else 0
