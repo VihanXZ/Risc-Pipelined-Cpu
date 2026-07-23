@@ -20,7 +20,7 @@ module control_unit (
 
     output reg        reg_write,   // 1 = this instruction writes a register
     output reg        alu_src,     // 0 = ALU's 2nd input is rs2 (register)
-                                    // 1 = ALU's 2nd input is the immediate
+                                    // 1 = ALU's 2nd input is the mmediate integer
     output reg        mem_read,    // 1 = read from data memory (lw)
     output reg        mem_write,   // 1 = write to data memory (sw)
     output reg        mem_to_reg,  // 1 = value written back to rd comes
@@ -47,7 +47,7 @@ module control_unit (
 
     always @(*) begin
         // ------------------------------------------------
-        // Safe defaults every cycle, so we never accidentally
+        // It is good to defaults every cycle, so we never accidentally
         // leave a signal at its old value (that would make
         // this behave like it has memory, which it must not -
         // it has to be purely combinational).
@@ -105,7 +105,7 @@ module control_unit (
                 alu_src    = 1'b1;
                 mem_read   = 1'b1;
                 mem_to_reg = 1'b1;
-                alu_op     = ALU_ADD;
+                alu_op     = ALU_ADD; //compute address as rs1 + immediate (ADD)
             end
 
             // --------------------------------------------
@@ -124,8 +124,8 @@ module control_unit (
             // (ALU_SUB) and checking the ALU's zero flag.
             // beq branches when zero=1, bne when zero=0 - that
             // distinction is handled OUTSIDE the ALU, using
-            // funct3 directly in the branch-decision logic you
-            // build later. Nothing gets written to a register.
+            // funct3 directly in the branch-decision logic 
+            // . Nothing gets written to a register.
             // --------------------------------------------
             OP_BRANCH: begin
                 branch = 1'b1;
