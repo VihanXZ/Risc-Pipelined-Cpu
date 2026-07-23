@@ -11,14 +11,14 @@ module data_mem (
     input  wire        clk,
     input  wire [31:0] addr,       // byte address (from ALU: rs1 + immediate)
     input  wire [31:0] write_data, // value to store (sw) - comes from rs2
-    input  wire        mem_read,   // 1 = this is a lw
-    input  wire        mem_write,  // 1 = this is a sw
+    input  wire     mem_read,   // 1 = this is a lw
+    input  wire      mem_write,  // 1 = this is a sw
     output wire [31:0] read_data   // value loaded (lw)
 );
 
     // 256 words = 1KB of data memory, same size reasoning as
     // instruction memory - plenty for a small test program.
-    reg [31:0] mem [0:255];
+    reg [31:0] mem [0:255];  //This single line creates 256 separate 32-bit storage boxes, all named mem, individually accessed as mem[0], mem[1], mem[2], all the way to mem[255]. Each box can hold one 32-bit number.
 
     integer i;
     initial begin
